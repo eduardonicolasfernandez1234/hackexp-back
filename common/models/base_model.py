@@ -1,6 +1,6 @@
 from django.db import models
 
-from auth.models import User
+# from auth.models import User
 
 
 class NonDeletedObjectsQuerySet(models.QuerySet):
@@ -26,12 +26,12 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
-    @property
-    def user(self):
-        if not hasattr('self', '_last_user_id'):
-            self._last_user_id = User.objects.filter(
-                pk=self.last_user_id).first()
-            return self._last_user_id
+    # @property
+    # def user(self):
+    #     if not hasattr('self', '_last_user_id'):
+    #         self._last_user_id = User.objects.filter(
+    #             pk=self.last_user_id).first()
+    #         return self._last_user_id
 
     def delete(self, using=None, keep_parents=False):
         self.is_deleted = True
